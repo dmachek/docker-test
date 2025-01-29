@@ -1,7 +1,9 @@
 name: Build and Test
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,7 +14,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          DOCKER_BUILDKIT=0 docker build --build-arg NO_PROXY="artifactory.dhl.com,localhost,127.0.0.1" -t my-app .
+          docker build --build-arg NO_PROXY="artifactory.dhl.com,localhost,127.0.0.1" -t my-app .
 
       - name: Run Container
         run: |
