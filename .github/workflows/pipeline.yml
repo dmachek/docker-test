@@ -12,7 +12,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build --build-arg NO_PROXY="artifactory.dhl.com,localhost,127.0.0.1" -t my-app .
+          DOCKER_BUILDKIT=0 docker build --build-arg NO_PROXY="artifactory.dhl.com,localhost,127.0.0.1" -t my-app .
 
       - name: Run Container
         run: |
